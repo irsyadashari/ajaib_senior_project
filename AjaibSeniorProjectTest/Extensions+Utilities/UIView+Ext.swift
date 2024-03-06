@@ -8,12 +8,13 @@
 import UIKit
 
 extension UIView {
-    func pin(to superView: UIView) {
+    func pinCenter(to superView: UIView, distance: Int = 0) {
+        let distanceInPixel = CGFloat(distance)
         translatesAutoresizingMaskIntoConstraints = false
-        leadingAnchor.constraint(equalTo: superView.leadingAnchor).isActive = true
-        trailingAnchor.constraint(equalTo: superView.trailingAnchor).isActive = true
-        bottomAnchor.constraint(equalTo: superView.bottomAnchor).isActive = true
-        topAnchor.constraint(equalTo: superView.topAnchor).isActive = true
+        leadingAnchor.constraint(equalTo: superView.leadingAnchor, constant: CGFloat(distanceInPixel)).isActive = true
+        bottomAnchor.constraint(equalTo: superView.bottomAnchor, constant: CGFloat(distanceInPixel)).isActive = true
+        topAnchor.constraint(equalTo: superView.topAnchor, constant: CGFloat(distanceInPixel)).isActive = true
+        trailingAnchor.constraint(equalTo: superView.trailingAnchor, constant: CGFloat(-distanceInPixel)).isActive = true
     }
     
     @discardableResult
@@ -21,5 +22,9 @@ extension UIView {
         translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(self)
         return self
+    }
+    
+    func clearSubviews() {
+        subviews.forEach { $0.removeFromSuperview() }
     }
 }

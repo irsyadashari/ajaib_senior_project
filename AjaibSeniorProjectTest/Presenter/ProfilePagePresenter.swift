@@ -5,23 +5,97 @@
 //  Created by Muh Irsyad Ashari on 01/03/24.
 //
 
-import Foundation
+import UIKit
 
 enum CellType {
     case profile
     case payment
     case cta
-    case optionList
+    case promotion
+    case setting
+    case system
+    case logout
+    case spacing
 }
 
 final class ProfilePagePresenter {
-    let sections: [CellType] = []
+    var sections: [CellType] = []
     
     init() {
-        
+        sections = [
+            .profile,
+            .spacing,
+            .payment,
+            .spacing,
+            .cta,
+            .spacing,
+            .promotion,
+            .spacing,
+            .setting,
+            .spacing,
+            .system,
+            .spacing,
+            .logout
+        ]
     }
     
-    private func generateCells() {
-        
+    func getPaymentViewParam() -> PaymentCellViewParam {
+        return PaymentCellViewParam(
+            titleBalance: "Saldo",
+            valueBalance: "Rp.1.000.000",
+            titleInProcessBalance: "Saldo di Proses",
+            valueInProcessBalance: "Rp.20000")
+    }
+    
+    func getProfileViewParam() -> UserInfoCellViewParam {
+        return UserInfoCellViewParam(name: "Irsyad Ashari", image: UIImage(named: "icon-profile-default"), isVerified: true)
+    }
+    
+    func generatePromotionCellParam() -> [OptionCellViewParam] {
+        let params: [OptionCellViewParam] = [
+            OptionCellViewParam(
+                title: "Referral",
+                image: UIImage(named: "diamond-points"),
+                cellType: OptionViewType.cta
+            ),
+            OptionCellViewParam(
+                title: "Invitation",
+                image: UIImage(named: "diamond-points"),
+                cellType: OptionViewType.cta
+            )
+        ]
+        return params
+    }
+    
+    func generateSystemCellParam() -> [OptionCellViewParam] {
+        let params: [OptionCellViewParam] = [
+            OptionCellViewParam(
+                title: "Vers",
+                image: UIImage(named: "diamond-points"),
+                cellType: OptionViewType.text(text: "App Version 4.71")
+            ),
+            OptionCellViewParam(
+                title: "Legal",
+                image: UIImage(named: "diamond-points"),
+                cellType: OptionViewType.cta
+            )
+        ]
+        return params
+    }
+    
+    func generateSettingCellParam() -> [OptionCellViewParam] {
+        let params: [OptionCellViewParam] = [
+            OptionCellViewParam(
+                title: "Notification",
+                image: UIImage(named: "diamond-points"),
+                cellType: OptionViewType.cta
+            ),
+            OptionCellViewParam(
+                title: "Dark Mode",
+                image: UIImage(named: "diamond-points"),
+                cellType: OptionViewType.toggle
+            ),
+        ]
+        return params
     }
 }
