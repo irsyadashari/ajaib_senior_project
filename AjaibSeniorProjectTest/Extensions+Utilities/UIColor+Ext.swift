@@ -30,3 +30,14 @@ extension String {
         )
     }
 }
+
+extension UIColor {
+    static var backgroundContrastColor: UIColor {
+        return UIColor { (traits) -> UIColor in
+            // Return one of two colors depending on light or dark mode
+            return traits.userInterfaceStyle == .dark ?
+            UIColor(red: 255, green: 255, blue: 255, alpha: 1) :
+            UIColor(red: 0.3, green: 0.4, blue: 0.5, alpha: 1)
+        }
+    }
+}

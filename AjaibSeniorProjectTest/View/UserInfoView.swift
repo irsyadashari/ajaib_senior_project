@@ -32,7 +32,7 @@ final class UserInfoView: UIView {
     private func setupView() {
         self.layer.cornerRadius = 10.0
         self.layer.borderWidth = 1.0
-        self.layer.borderColor = UIColor.black.cgColor
+        self.layer.borderColor = UIColor.backgroundContrastColor.cgColor
         
         nameLabel.font = UIFont.systemFont(ofSize: 16)
         setupConstraint()

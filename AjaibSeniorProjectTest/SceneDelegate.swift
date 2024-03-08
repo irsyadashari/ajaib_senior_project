@@ -21,6 +21,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         window?.rootViewController = UINavigationController(rootViewController: ProfilePageViewController())
         window?.makeKeyAndVisible()
+        
+        UserDefaults.standard.addObserver(self, forKeyPath: "theme", options: [.new], context: nil)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -50,7 +52,28 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
-
+    
+    override func observeValue(
+        forKeyPath keyPath: String?,
+        of object: Any?,
+        change: [NSKeyValueChangeKey: Any]?,
+        context: UnsafeMutableRawPointer?
+    ) {
+        guard
+            let change = change,
+            object != nil,
+            keyPath == "theme",
+            let themeValue = change[.newKey] as? String,
+            let theme = Theme(rawValue: themeValue)?.uiInterfaceStyle
+        else { return }
+        
+        UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveLinear, animations: { [weak self] in
+            self?.window?.overrideUserInterfaceStyle = theme
+        }, completion: .none)
+    }
+    
+    deinit {
+        UserDefaults.standard.removeObserver(self, forKeyPath: "theme", context: nil)
+    }
 }
 

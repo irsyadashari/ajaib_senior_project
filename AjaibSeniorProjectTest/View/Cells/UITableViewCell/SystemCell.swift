@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class SistemCell: UITableViewCell {
+class SystemCell: UITableViewCell {
     private lazy var titleLabel = UILabel()
     private lazy var optionsStack = UIStackView()
     
@@ -22,7 +22,7 @@ class SistemCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-//        selectionStyle = .none
+        selectionStyle = .none
         contentView.addSubview(titleLabel)
         contentView.addSubview(optionsStack)
         
@@ -66,7 +66,7 @@ class SistemCell: UITableViewCell {
         optionsStack.spacing = 8
         optionsStack.layer.cornerRadius = 10.0
         optionsStack.layer.borderWidth = 1.0
-        optionsStack.layer.borderColor = UIColor.black.cgColor
+        optionsStack.layer.borderColor = UIColor.backgroundContrastColor.cgColor
         optionsStack.distribution = .fillProportionally
         
         titleLabel.font = UIFont.boldSystemFont(ofSize: 20)

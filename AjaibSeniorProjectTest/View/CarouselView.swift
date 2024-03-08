@@ -8,7 +8,8 @@
 import UIKit
 
 final class CarouselView: UIView {
-    private lazy var collectionView = UICollectionView().parent(self)
+    private var collectionView: UICollectionView!
+
     private var presenter: CarouselViewPresenter?
     
     override init(frame: CGRect) {
@@ -23,9 +24,19 @@ final class CarouselView: UIView {
     
     func set(presenter: CarouselViewPresenter) {
         self.presenter = presenter
+        self.collectionView.reloadData()
     }
     
     private func setupView() {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.register(CarouselViewCell.self, forCellWithReuseIdentifier: CarouselViewCell.reuseIdentifier)
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        
+        addSubview(collectionView)
         setupConstraint()
     }
     

@@ -19,6 +19,19 @@
 		BF4095A52B98851E00AD45B1 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4095A42B98851E00AD45B1 /* UIColor+Ext.swift */; };
 		BF4095A72B98868400AD45B1 /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4095A62B98868400AD45B1 /* CarouselView.swift */; };
 		BF4095A92B98879700AD45B1 /* CarouselViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4095A82B98879700AD45B1 /* CarouselViewPresenter.swift */; };
+		BF4095AB2B988AB900AD45B1 /* CarouselTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4095AA2B988AB900AD45B1 /* CarouselTableViewCell.swift */; };
+		BF4095AE2B988F1F00AD45B1 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = BF4095AD2B988F1F00AD45B1 /* Alamofire */; };
+		BF4095B42B98938800AD45B1 /* Mock-CTA-Multiple.json in Resources */ = {isa = PBXBuildFile; fileRef = BF4095AF2B98938800AD45B1 /* Mock-CTA-Multiple.json */; };
+		BF4095B52B98938800AD45B1 /* Mock-Payments.json in Resources */ = {isa = PBXBuildFile; fileRef = BF4095B02B98938800AD45B1 /* Mock-Payments.json */; };
+		BF4095B62B98938800AD45B1 /* Mock-CTA-Single.json in Resources */ = {isa = PBXBuildFile; fileRef = BF4095B12B98938800AD45B1 /* Mock-CTA-Single.json */; };
+		BF4095B72B98938800AD45B1 /* Mock-User-Verified.json in Resources */ = {isa = PBXBuildFile; fileRef = BF4095B22B98938800AD45B1 /* Mock-User-Verified.json */; };
+		BF4095B82B98938800AD45B1 /* Mock-User.json in Resources */ = {isa = PBXBuildFile; fileRef = BF4095B32B98938800AD45B1 /* Mock-User.json */; };
+		BF4095BC2B98C10F00AD45B1 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4095BB2B98C10F00AD45B1 /* Theme.swift */; };
+		BF4095BE2B99B4D200AD45B1 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4095BD2B99B4D200AD45B1 /* DetailViewController.swift */; };
+		BF4095C02B99B55000AD45B1 /* Mock-Simulation-DetailPage.json in Resources */ = {isa = PBXBuildFile; fileRef = BF4095BF2B99B55000AD45B1 /* Mock-Simulation-DetailPage.json */; };
+		BF4095C22B99B8A500AD45B1 /* SelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4095C12B99B8A500AD45B1 /* SelectorView.swift */; };
+		BF4095C42B9AB79800AD45B1 /* NumericTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4095C32B9AB79800AD45B1 /* NumericTextField.swift */; };
+		BF4095C62B9AC8EB00AD45B1 /* UITextField+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4095C52B9AC8EB00AD45B1 /* UITextField+Ext.swift */; };
 		BFF7F1D72B91782A003C5EA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF7F1D62B91782A003C5EA2 /* AppDelegate.swift */; };
 		BFF7F1D92B91782A003C5EA2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF7F1D82B91782A003C5EA2 /* SceneDelegate.swift */; };
 		BFF7F1DB2B91782A003C5EA2 /* ProfilePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF7F1DA2B91782A003C5EA2 /* ProfilePageViewController.swift */; };
@@ -36,7 +49,7 @@
 		BFF7F2202B9805AB003C5EA2 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = BFF7F21F2B9805AB003C5EA2 /* RxCocoa */; };
 		BFF7F2222B9805AB003C5EA2 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = BFF7F2212B9805AB003C5EA2 /* RxRelay */; };
 		BFF7F2242B9805AB003C5EA2 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BFF7F2232B9805AB003C5EA2 /* RxSwift */; };
-		BFF7F2262B980C10003C5EA2 /* SistemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF7F2252B980C10003C5EA2 /* SistemCell.swift */; };
+		BFF7F2262B980C10003C5EA2 /* SystemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF7F2252B980C10003C5EA2 /* SystemCell.swift */; };
 		BFF7F2282B980C85003C5EA2 /* OptionCellViewParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF7F2272B980C85003C5EA2 /* OptionCellViewParam.swift */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +83,18 @@
 		BF4095A42B98851E00AD45B1 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		BF4095A62B98868400AD45B1 /* CarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselView.swift; sourceTree = "<group>"; };
 		BF4095A82B98879700AD45B1 /* CarouselViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselViewPresenter.swift; sourceTree = "<group>"; };
+		BF4095AA2B988AB900AD45B1 /* CarouselTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselTableViewCell.swift; sourceTree = "<group>"; };
+		BF4095AF2B98938800AD45B1 /* Mock-CTA-Multiple.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Mock-CTA-Multiple.json"; sourceTree = "<group>"; };
+		BF4095B02B98938800AD45B1 /* Mock-Payments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Mock-Payments.json"; sourceTree = "<group>"; };
+		BF4095B12B98938800AD45B1 /* Mock-CTA-Single.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Mock-CTA-Single.json"; sourceTree = "<group>"; };
+		BF4095B22B98938800AD45B1 /* Mock-User-Verified.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Mock-User-Verified.json"; sourceTree = "<group>"; };
+		BF4095B32B98938800AD45B1 /* Mock-User.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Mock-User.json"; sourceTree = "<group>"; };
+		BF4095BB2B98C10F00AD45B1 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		BF4095BD2B99B4D200AD45B1 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		BF4095BF2B99B55000AD45B1 /* Mock-Simulation-DetailPage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Mock-Simulation-DetailPage.json"; sourceTree = "<group>"; };
+		BF4095C12B99B8A500AD45B1 /* SelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectorView.swift; sourceTree = "<group>"; };
+		BF4095C32B9AB79800AD45B1 /* NumericTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericTextField.swift; sourceTree = "<group>"; };
+		BF4095C52B9AC8EB00AD45B1 /* UITextField+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Ext.swift"; sourceTree = "<group>"; };
 		BFF7F1D32B91782A003C5EA2 /* AjaibSeniorProjectTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AjaibSeniorProjectTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFF7F1D62B91782A003C5EA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFF7F1D82B91782A003C5EA2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -87,7 +112,7 @@
 		BFF7F20F2B918F12003C5EA2 /* LogoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutCell.swift; sourceTree = "<group>"; };
 		BFF7F2132B91900F003C5EA2 /* OptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OptionView.swift; path = ../../../../../Documents/OptionView.swift; sourceTree = "<group>"; };
 		BFF7F21A2B975885003C5EA2 /* UITableView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Ext.swift"; sourceTree = "<group>"; };
-		BFF7F2252B980C10003C5EA2 /* SistemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SistemCell.swift; sourceTree = "<group>"; };
+		BFF7F2252B980C10003C5EA2 /* SystemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemCell.swift; sourceTree = "<group>"; };
 		BFF7F2272B980C85003C5EA2 /* OptionCellViewParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCellViewParam.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -96,6 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF4095AE2B988F1F00AD45B1 /* Alamofire in Frameworks */,
 				BFF7F2222B9805AB003C5EA2 /* RxRelay in Frameworks */,
 				BFF7F2202B9805AB003C5EA2 /* RxCocoa in Frameworks */,
 				BFF7F2242B9805AB003C5EA2 /* RxSwift in Frameworks */,
@@ -142,12 +168,13 @@
 		BF4095A02B98826100AD45B1 /* UITableViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				BF4095AA2B988AB900AD45B1 /* CarouselTableViewCell.swift */,
 				BFF7F20F2B918F12003C5EA2 /* LogoutCell.swift */,
+				BF40959C2B985B3D00AD45B1 /* PaymentViewCell.swift */,
 				BF4095902B984A3B00AD45B1 /* PromotionCell.swift */,
 				BF40958E2B9845BB00AD45B1 /* SettingCell.swift */,
-				BFF7F2252B980C10003C5EA2 /* SistemCell.swift */,
+				BFF7F2252B980C10003C5EA2 /* SystemCell.swift */,
 				BF4095962B9850D600AD45B1 /* UserInfoViewCell.swift */,
-				BF40959C2B985B3D00AD45B1 /* PaymentViewCell.swift */,
 			);
 			path = UITableViewCell;
 			sourceTree = "<group>";
@@ -158,6 +185,22 @@
 				BF4095A22B9882BA00AD45B1 /* CarouselViewCell.swift */,
 			);
 			path = UICollectionViewCell;
+			sourceTree = "<group>";
+		};
+		BF4095B92B98C0E700AD45B1 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				BF4095BA2B98C10000AD45B1 /* Enum */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		BF4095BA2B98C10000AD45B1 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				BF4095BB2B98C10F00AD45B1 /* Theme.swift */,
+			);
+			path = Enum;
 			sourceTree = "<group>";
 		};
 		BFF7F1CA2B91782A003C5EA2 = {
@@ -183,14 +226,21 @@
 		BFF7F1D52B91782A003C5EA2 /* AjaibSeniorProjectTest */ = {
 			isa = PBXGroup;
 			children = (
-				BFF7F20A2B918BB7003C5EA2 /* Extensions+Utilities */,
-				BFF7F2072B9188E4003C5EA2 /* Presenter */,
-				BFF7F2062B9188C9003C5EA2 /* View */,
+				BF4095BF2B99B55000AD45B1 /* Mock-Simulation-DetailPage.json */,
+				BF4095AF2B98938800AD45B1 /* Mock-CTA-Multiple.json */,
+				BF4095B12B98938800AD45B1 /* Mock-CTA-Single.json */,
+				BF4095B02B98938800AD45B1 /* Mock-Payments.json */,
+				BF4095B22B98938800AD45B1 /* Mock-User-Verified.json */,
+				BF4095B32B98938800AD45B1 /* Mock-User.json */,
+				BFF7F1E42B91782D003C5EA2 /* Info.plist */,
 				BFF7F1D62B91782A003C5EA2 /* AppDelegate.swift */,
 				BFF7F1D82B91782A003C5EA2 /* SceneDelegate.swift */,
 				BFF7F1DF2B91782D003C5EA2 /* Assets.xcassets */,
+				BF4095B92B98C0E700AD45B1 /* Core */,
+				BFF7F20A2B918BB7003C5EA2 /* Extensions+Utilities */,
 				BFF7F1E12B91782D003C5EA2 /* LaunchScreen.storyboard */,
-				BFF7F1E42B91782D003C5EA2 /* Info.plist */,
+				BFF7F2072B9188E4003C5EA2 /* Presenter */,
+				BFF7F2062B9188C9003C5EA2 /* View */,
 			);
 			path = AjaibSeniorProjectTest;
 			sourceTree = "<group>";
@@ -217,6 +267,7 @@
 			children = (
 				BF4095A62B98868400AD45B1 /* CarouselView.swift */,
 				BF40959A2B98545900AD45B1 /* PaymentView.swift */,
+				BF4095C12B99B8A500AD45B1 /* SelectorView.swift */,
 				BF4095942B984CA100AD45B1 /* UserInfoView.swift */,
 				BF4095922B984C4700AD45B1 /* Cells */,
 				BFF7F20E2B918EC0003C5EA2 /* Reusable */,
@@ -241,6 +292,7 @@
 				BFF7F20B2B918BD2003C5EA2 /* UIView+Ext.swift */,
 				BFF7F21A2B975885003C5EA2 /* UITableView+Ext.swift */,
 				BF4095A42B98851E00AD45B1 /* UIColor+Ext.swift */,
+				BF4095C52B9AC8EB00AD45B1 /* UITextField+Ext.swift */,
 			);
 			path = "Extensions+Utilities";
 			sourceTree = "<group>";
@@ -249,6 +301,7 @@
 			isa = PBXGroup;
 			children = (
 				BFF7F1DA2B91782A003C5EA2 /* ProfilePageViewController.swift */,
+				BF4095BD2B99B4D200AD45B1 /* DetailViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -257,6 +310,7 @@
 			isa = PBXGroup;
 			children = (
 				BFF7F2132B91900F003C5EA2 /* OptionView.swift */,
+				BF4095C32B9AB79800AD45B1 /* NumericTextField.swift */,
 			);
 			path = Reusable;
 			sourceTree = "<group>";
@@ -282,6 +336,7 @@
 				BFF7F21F2B9805AB003C5EA2 /* RxCocoa */,
 				BFF7F2212B9805AB003C5EA2 /* RxRelay */,
 				BFF7F2232B9805AB003C5EA2 /* RxSwift */,
+				BF4095AD2B988F1F00AD45B1 /* Alamofire */,
 			);
 			productName = AjaibSeniorProjectTest;
 			productReference = BFF7F1D32B91782A003C5EA2 /* AjaibSeniorProjectTest.app */;
@@ -357,6 +412,7 @@
 			mainGroup = BFF7F1CA2B91782A003C5EA2;
 			packageReferences = (
 				BFF7F21C2B9805AB003C5EA2 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				BF4095AC2B988F1F00AD45B1 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = BFF7F1D42B91782A003C5EA2 /* Products */;
 			projectDirPath = "";
@@ -374,8 +430,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF4095C02B99B55000AD45B1 /* Mock-Simulation-DetailPage.json in Resources */,
 				BFF7F1E32B91782D003C5EA2 /* LaunchScreen.storyboard in Resources */,
 				BFF7F1E02B91782D003C5EA2 /* Assets.xcassets in Resources */,
+				BF4095B52B98938800AD45B1 /* Mock-Payments.json in Resources */,
+				BF4095B82B98938800AD45B1 /* Mock-User.json in Resources */,
+				BF4095B62B98938800AD45B1 /* Mock-CTA-Single.json in Resources */,
+				BF4095B72B98938800AD45B1 /* Mock-User-Verified.json in Resources */,
+				BF4095B42B98938800AD45B1 /* Mock-CTA-Multiple.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,25 +464,31 @@
 			files = (
 				BF4095A32B9882BA00AD45B1 /* CarouselViewCell.swift in Sources */,
 				BF4095952B984CA100AD45B1 /* UserInfoView.swift in Sources */,
+				BF4095BE2B99B4D200AD45B1 /* DetailViewController.swift in Sources */,
+				BF4095C62B9AC8EB00AD45B1 /* UITextField+Ext.swift in Sources */,
 				BFF7F2142B91900F003C5EA2 /* OptionView.swift in Sources */,
 				BF40959F2B985B8900AD45B1 /* PaymentCellViewParam.swift in Sources */,
 				BF4095A72B98868400AD45B1 /* CarouselView.swift in Sources */,
 				BF40958F2B9845BB00AD45B1 /* SettingCell.swift in Sources */,
+				BF4095C22B99B8A500AD45B1 /* SelectorView.swift in Sources */,
+				BF4095C42B9AB79800AD45B1 /* NumericTextField.swift in Sources */,
 				BFF7F1DB2B91782A003C5EA2 /* ProfilePageViewController.swift in Sources */,
 				BF4095A92B98879700AD45B1 /* CarouselViewPresenter.swift in Sources */,
 				BF40959D2B985B3D00AD45B1 /* PaymentViewCell.swift in Sources */,
+				BF4095BC2B98C10F00AD45B1 /* Theme.swift in Sources */,
 				BFF7F1D72B91782A003C5EA2 /* AppDelegate.swift in Sources */,
 				BFF7F2282B980C85003C5EA2 /* OptionCellViewParam.swift in Sources */,
 				BFF7F2102B918F12003C5EA2 /* LogoutCell.swift in Sources */,
 				BFF7F20C2B918BD2003C5EA2 /* UIView+Ext.swift in Sources */,
 				BF40959B2B98545900AD45B1 /* PaymentView.swift in Sources */,
 				BFF7F21B2B975885003C5EA2 /* UITableView+Ext.swift in Sources */,
+				BF4095AB2B988AB900AD45B1 /* CarouselTableViewCell.swift in Sources */,
 				BFF7F1D92B91782A003C5EA2 /* SceneDelegate.swift in Sources */,
 				BFF7F2092B9188F7003C5EA2 /* ProfilePagePresenter.swift in Sources */,
 				BF4095912B984A3B00AD45B1 /* PromotionCell.swift in Sources */,
 				BF4095992B98515D00AD45B1 /* UserInfoCellViewParam.swift in Sources */,
 				BF4095A52B98851E00AD45B1 /* UIColor+Ext.swift in Sources */,
-				BFF7F2262B980C10003C5EA2 /* SistemCell.swift in Sources */,
+				BFF7F2262B980C10003C5EA2 /* SystemCell.swift in Sources */,
 				BF4095972B9850D600AD45B1 /* UserInfoViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -755,6 +823,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		BF4095AC2B988F1F00AD45B1 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		BFF7F21C2B9805AB003C5EA2 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
@@ -766,6 +842,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		BF4095AD2B988F1F00AD45B1 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BF4095AC2B988F1F00AD45B1 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
 		BFF7F21D2B9805AB003C5EA2 /* RxBlocking */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BFF7F21C2B9805AB003C5EA2 /* XCRemoteSwiftPackageReference "RxSwift" */;

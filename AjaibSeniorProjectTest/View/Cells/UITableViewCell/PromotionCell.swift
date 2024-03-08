@@ -24,6 +24,7 @@ class PromotionCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(titleLabel)
         contentView.addSubview(optionsStack)
+        selectionStyle = .none
         
         setupUI()
     }
@@ -65,7 +66,7 @@ class PromotionCell: UITableViewCell {
         optionsStack.spacing = 8
         optionsStack.layer.cornerRadius = 10.0
         optionsStack.layer.borderWidth = 1.0
-        optionsStack.layer.borderColor = UIColor.black.cgColor
+        optionsStack.layer.borderColor = UIColor.backgroundContrastColor.cgColor
         optionsStack.distribution = .fillProportionally
         
         titleLabel.font = UIFont.boldSystemFont(ofSize: 20)

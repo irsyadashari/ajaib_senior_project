@@ -11,13 +11,12 @@ import RxCocoa
 
 final class ProfilePageViewController: UIViewController {
     let presenter = ProfilePagePresenter()
-    let tableView = UITableView()
+    private lazy var tableView = UITableView()
     
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
         setupView()
     }
     
@@ -36,7 +35,8 @@ final class ProfilePageViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.separatorStyle = .singleLine
+        tableView.separatorStyle = .none
+        tableView.showsVerticalScrollIndicator = false
         tableView.pinCenter(to: view, distance: 16)
         
         registerCells()
@@ -44,23 +44,59 @@ final class ProfilePageViewController: UIViewController {
     
     private func registerCells() {
         tableView.register(LogoutCell.self, forCellReuseIdentifier: LogoutCell.reuseIdentifier)
-        tableView.register(SistemCell.self, forCellReuseIdentifier: SistemCell.reuseIdentifier)
+        tableView.register(SystemCell.self, forCellReuseIdentifier: SystemCell.reuseIdentifier)
         tableView.register(SettingCell.self, forCellReuseIdentifier: SettingCell.reuseIdentifier)
         tableView.register(PromotionCell.self, forCellReuseIdentifier: PromotionCell.reuseIdentifier)
         tableView.register(UserInfoViewCell.self, forCellReuseIdentifier: UserInfoViewCell.reuseIdentifier)
         tableView.register(PaymentViewCell.self, forCellReuseIdentifier: PaymentViewCell.reuseIdentifier)
+        tableView.register(CarouselTableViewCell.self, forCellReuseIdentifier: CarouselTableViewCell.reuseIdentifier)
     }
     
-    @objc func goToDetailPage() {
-        let detailPage = UIViewController()
+    private func goToDetailPage() {
+        let detailPage = DetailViewController()
+        detailPage.view.backgroundColor = .systemBackground
         detailPage.title = "Detail Page"
         navigationController?.pushViewController(detailPage, animated: true)
+    }
+    
+    private func toggleDarkMode(isOn: Bool) {
+        var theme = Theme.light
+        if isOn {
+            theme = Theme.dark
+        }
+        UserDefaults.standard.setValue(theme.rawValue, forKey: "theme")
+    }
+    
+    private func promptLogout() {
+        // Create an alert controller
+        let alertController = UIAlertController(title: "Logout", message: "Are you sure ?", preferredStyle: .alert)
+        
+        let actionLogout = UIAlertAction(title: "Logout", style: .default) { (action) in
+            print("Logout pressed")
+        }
+        
+        let actionCancel = UIAlertAction(title: "Cancel", style: .default) { (action) in
+            print("Cancel pressed")
+        }
+        
+        alertController.addAction(actionLogout)
+        alertController.addAction(actionCancel)
+        
+        
+        // Present the alert controller
+        present(alertController, animated: true, completion: nil)
     }
 }
 
 extension ProfilePageViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("cell at \(indexPath.row) is tapped")
+        switch presenter.sections[indexPath.row] {
+        case .logout:
+            promptLogout()
+        default:
+            print("other has been implemented")
+        }
     }
 }
 
@@ -70,10 +106,14 @@ extension ProfilePageViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         switch presenter.sections[indexPath.row] {
         case .cta:
-            return UITableViewCell()
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: CarouselTableViewCell.reuseIdentifier,
+                for: indexPath
+            ) as! CarouselTableViewCell
+            cell.configure(presenter: presenter.getCarouselPresenter())
+            return cell
         case .profile:
             let cell = tableView.dequeueReusableCell(
                 withIdentifier: UserInfoViewCell.reuseIdentifier,
@@ -98,6 +138,7 @@ extension ProfilePageViewController: UITableViewDataSource {
             cell.rxEventChevronDidTapped.asObservable()
                 .subscribe(onNext: { [weak self] in
                     print("chevron promotion tapped")
+                    self?.goToDetailPage()
                 }).disposed(by: disposeBag)
             return cell
         case .setting:
@@ -110,22 +151,25 @@ extension ProfilePageViewController: UITableViewDataSource {
             cell.rxEventToggleDidSwitched.asObservable()
                 .subscribe(onNext: { [weak self] isOn in
                     print("toggle is \(isOn)")
+                    self?.toggleDarkMode(isOn: isOn)
                 }).disposed(by: disposeBag)
             cell.rxEventChevronDidTapped.asObservable()
                 .subscribe(onNext: { [weak self] in
                     print("chevron setting tapped")
+                    self?.goToDetailPage()
                 }).disposed(by: disposeBag)
             return cell
         case .system:
             let cell = tableView.dequeueReusableCell(
-                withIdentifier: SistemCell.reuseIdentifier,
+                withIdentifier: SystemCell.reuseIdentifier,
                 for: indexPath
-            ) as! SistemCell
+            ) as! SystemCell
             let params = presenter.generateSystemCellParam()
             cell.configure(viewParams: params)
             cell.rxEventChevronDidTapped.asObservable()
                 .subscribe(onNext: { [weak self] in
                     print("chevron system tapped")
+                    self?.goToDetailPage()
                 }).disposed(by: disposeBag)
             return cell
         case .logout:

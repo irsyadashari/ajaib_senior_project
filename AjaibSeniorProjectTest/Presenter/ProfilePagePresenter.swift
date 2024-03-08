@@ -39,6 +39,13 @@ final class ProfilePagePresenter {
         ]
     }
     
+    func getCarouselPresenter() -> CarouselViewPresenter {
+        return CarouselViewPresenter(colors: [
+            "#047d24", "#1d74f5", "#e61049" // for testing multiple items
+//            "#047d24" // for testing single item
+        ])
+    }
+    
     func getPaymentViewParam() -> PaymentCellViewParam {
         return PaymentCellViewParam(
             titleBalance: "Saldo",
