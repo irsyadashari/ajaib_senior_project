@@ -16,9 +16,14 @@ final class NumericTextField: UITextField {
 
     private let disposeBag = DisposeBag()
 
-    var numberInTextField: Int {
-        let textFieldText: String = self.text ?? ""
-        return Int(textFieldText) ?? 0
+    var numberInTextField: Double {
+        guard let textFieldText = self.text, !textFieldText.isEmpty else { return 0.0 }
+        var sanitizedString = textFieldText
+            .replacingOccurrences(of: ".", with: ",")
+            .replacingOccurrences(of: ",", with: "")
+            .replacingOccurrences(of: "Rp", with: "")
+        sanitizedString = sanitizedString.trimmingCharacters(in: .whitespaces)
+        return Double(sanitizedString) ?? 0
     }
     
     // MARK: - Initialization
@@ -36,7 +41,7 @@ final class NumericTextField: UITextField {
     func configure(isEnabled: Bool, text: String, units: String) {
         self.isEnabled = isEnabled
         if !isEnabled {
-            self.backgroundColor = .systemGray2
+            self.backgroundColor = .systemGray6
         }
         
         self.text = text
@@ -74,12 +79,17 @@ final class NumericTextField: UITextField {
     }
     
     private func setupRx() {
-        rx.text.orEmpty
-            .debounce(.milliseconds(300), scheduler: MainScheduler.instance)
+        rx.controlEvent(.editingChanged)
+            .debounce(.milliseconds(10), scheduler: MainScheduler.instance)
+            .map { [weak self] _ in self?.text ?? "" }
             .distinctUntilChanged()
             .subscribe(onNext: { [weak self] text in
+                // Only trigger when the user is actively typing
+                guard let isEditing = self?.isEditing, isEditing else {
+                    return
+                }
+
                 self?.rxEventUserTyping.onNext(text)
-                print("text: \(text)")
             })
             .disposed(by: disposeBag)
     }

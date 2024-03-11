@@ -27,53 +27,61 @@ final class DetailViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     
-    var totalInvestment: Int {
-        let marketPrice = marketPriceTextField.numberInTextField
-        let yearlyProjection = yearlyProjectionTextField.numberInTextField
-        let investmentUnit = investmentUnitTextField.numberInTextField
-        return marketPrice * yearlyProjection * investmentUnit
-    }
+    private let presenter = DetailViewPresenter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        loadValues()
+        presenter.viewDidLoad()
     }
     
-    private func loadValues() {
+    private func setValue(isInitial: Bool = false) {
+        let marketPrice: String = presenter.getMarketPriceText(numberTextField: marketPriceTextField.numberInTextField, isInitial: isInitial)
         
-        //get this value from interactor in the future
-        configure(
-            yearlyProjectionText: "8,3",
-            investmentUnitText: "0,53",
-            totalInvestmentDateText: "From 5 Nov 2024 to 5 Nov 2029",
-            dateStartText: "5 Nov 2024",
-            dateEndText: "5 Nov 2029",
-            roi: "64.050,68"
+        let yearlyProjection: String = presenter.getYearlyProjectionText()
+        let investmentUnitText: String = presenter.getInvestmentUnitText()
+        let totalInvestmentDateText: String = presenter.getTotalInvestmentDateText()
+        let dateStartText: String = presenter.getdateStartText()
+        let dateEndText: String = presenter.getDateEndText()
+        let totalInvestmentValueText: String = presenter.getTotalInvestmentValueText()
+        let roiText: String = presenter.getRoiText()
+        
+        configureValue(
+            marketPrice: marketPrice,
+            yearlyProjection: yearlyProjection,
+            investmentUnitText: investmentUnitText,
+            totalInvestmentDateText: totalInvestmentDateText,
+            dateStartText: dateStartText,
+            dateEndText: dateEndText,
+            totalInvestmentValueText: totalInvestmentValueText,
+            roiText: roiText
         )
     }
     
-    private func configure(
-        yearlyProjectionText: String,
+    private func configureValue(
+        marketPrice: String,
+        yearlyProjection: String,
         investmentUnitText: String,
         totalInvestmentDateText: String,
         dateStartText: String,
         dateEndText: String,
-        roi: String
+        totalInvestmentValueText: String,
+        roiText: String
     ) {
-        yearlyProjectionTextField.configure(isEnabled: false, text: yearlyProjectionText, units: "%")
+        marketPriceTextField.configure(isEnabled: true, text: marketPrice, units: "")
+        yearlyProjectionTextField.configure(isEnabled: false, text: yearlyProjection, units: "%")
         investmentUnitTextField.configure(isEnabled: false, text: investmentUnitText, units: "Qty")
         
         totalInvestmentDateLabel.text = totalInvestmentDateText
         setColoredText(originalText: totalInvestmentDateText, dateStart: dateStartText, dateEnd: dateEndText)
-        roiLabel.text = "ROI : Rp.\(roi)%"
+        
+        totalInvestmentTextField.text = totalInvestmentValueText
+        roiLabel.text = roiText
     }
     
     private func setupView() {
         titleMarketPriceLabel.text = "Market Price"
         titleMarketPriceLabel.font = UIFont.boldSystemFont(ofSize: 16)
-        
-        marketPriceTextField.configure(isEnabled: true, text: "", units: "")
         
         yearlyProjectionLabel.text = "Yearly Projection"
         yearlyProjectionLabel.font = UIFont.boldSystemFont(ofSize: 16)
@@ -87,24 +95,31 @@ final class DetailViewController: UIViewController {
         totalInvestmentTitleLabel.text = "Total Investment"
         totalInvestmentTitleLabel.font = UIFont.boldSystemFont(ofSize: 16)
         
-        roiLabel.textColor = .green
+        roiLabel.textColor = .systemGreen
         
         setupRx()
         setupConstraint()
     }
     
     private func setupRx() {
+        presenter.rxEventSimulationViewParamLoaded.asObservable()
+            .subscribe(onNext: { [weak self] viewParam in
+                self?.setValue(isInitial: true)
+            }).disposed(by: disposeBag)
+
         marketPriceTextField.rxEventUserTyping.asObservable()
+            .skip(1)
             .subscribe(onNext: { [weak self] text in
-                self?.updateTotalInvestment()
+                self?.setValue()
+            }).disposed(by: disposeBag)
+        
+        selectorView.rxEventUserChangeInvestTime.asObservable()
+            .subscribe(onNext: { [weak self] investmentDuration in
+                self?.presenter.didUserChangeInvestmentDuration(duration: investmentDuration)
+                self?.setValue()
             }).disposed(by: disposeBag)
     }
-    
-    private func updateTotalInvestment() {
-        
-        totalInvestmentTextField.text = String(totalInvestment)
-    }
-    
+
     private func setupConstraint() {
         titleMarketPriceLabel.translatesAutoresizingMaskIntoConstraints = false
         titleMarketPriceLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: distanceInPixel).isActive = true
@@ -175,10 +190,9 @@ final class DetailViewController: UIViewController {
         let dateStartRange = (originalText as NSString).range(of: dateStart)
         let dateEndRange = (originalText as NSString).range(of: dateEnd)
 
-        attributedString.addAttribute(.foregroundColor, value: UIColor.green, range: dateStartRange)
-        attributedString.addAttribute(.foregroundColor, value: UIColor.green, range: dateEndRange)
+        attributedString.addAttribute(.foregroundColor, value: UIColor.systemGreen, range: dateStartRange)
+        attributedString.addAttribute(.foregroundColor, value: UIColor.systemGreen, range: dateEndRange)
         
         totalInvestmentDateLabel.attributedText = attributedString
     }
 }
-

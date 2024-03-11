@@ -6,13 +6,19 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 final class SelectorView: UIView {
     private var collectionView: UICollectionView!
     private var selectedIndex: Int = 0
     
+    let rxEventUserChangeInvestTime = PublishSubject<InvestmentDuration>()
+    
+    private let disposeBag = DisposeBag()
+    
     // Your data for the carousel
-    private let options = ["6M", "1Y", "3Y", "5Y"]
+    private let options: [InvestmentDuration] = [.sixMonth, .oneYear, .threeYear, .fiveYear]
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -50,6 +56,7 @@ extension SelectorView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedIndex = indexPath.item
         collectionView.reloadData()
+        self.rxEventUserChangeInvestTime.onNext(options[indexPath.row])
     }
 }
 
@@ -70,7 +77,20 @@ extension SelectorView: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SelectorCell.identifier, for: indexPath) as! SelectorCell
-        cell.titleLabel.text = options[indexPath.item]
+        let option: InvestmentDuration = options[indexPath.item]
+        var cellText: String = ""
+        switch option {
+        case .sixMonth:
+            cellText = "6M"
+        case .oneYear:
+            cellText = "1Y"
+        case .threeYear:
+            cellText = "3Y"
+        case .fiveYear:
+            cellText = "5Y"
+        }
+        cell.titleLabel.text = cellText
+        
         let isSelectedCell  = (indexPath.item == selectedIndex)
         cell.isSelectedCell = isSelectedCell
         let cellColor = isSelectedCell ? UIColor.red.cgColor : UIColor.backgroundContrastColor.cgColor
