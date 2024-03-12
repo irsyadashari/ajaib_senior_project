@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 enum CellType {
     case profile
@@ -20,6 +22,11 @@ enum CellType {
 
 final class ProfilePagePresenter {
     var sections: [CellType] = []
+    private var profileModel: UserDomainModel?
+    private var paymentModel: PaymentDomainModel?
+    private var bannerModel: CTADomainModel?
+    
+    private let disposeBag = DisposeBag()
     
     init() {
         sections = [
@@ -39,23 +46,72 @@ final class ProfilePagePresenter {
         ]
     }
     
-    func getCarouselPresenter() -> CarouselViewPresenter {
-        return CarouselViewPresenter(colors: [
-            "#047d24", "#1d74f5", "#e61049" // for testing multiple items
-//            "#047d24" // for testing single item
-        ])
+    func viewDidLoad() {
+       loadSections()
     }
     
-    func getPaymentViewParam() -> PaymentCellViewParam {
-        return PaymentCellViewParam(
-            titleBalance: "Saldo",
-            valueBalance: "Rp.1.000.000",
-            titleInProcessBalance: "Saldo di Proses",
-            valueInProcessBalance: "Rp.20000")
+    private func loadSections() {
+        //For testing verified users
+//        MockAPIService.getUserVerified().asObservable()
+//            .subscribe(onNext: { [weak self] model in
+//                self?.profileModel = UserDomainModel(name: model.name, isVerified: model.isVerified)
+//
+//                if model.isVerified {
+//                    self?.loadCTABanners()
+//                }
+//            }).disposed(by: disposeBag)
+        
+        //For testing Not verified users
+        MockAPIService.getUserNotVerified().asObservable()
+            .subscribe(onNext: { [weak self] model in
+                self?.profileModel = UserDomainModel(name: model.name, isVerified: model.isVerified)
+                
+                if model.isVerified {
+                    self?.loadCTABanners()
+                }
+            }).disposed(by: disposeBag)
+        
+        MockAPIService.getPayments().asObservable()
+            .subscribe(onNext: { [weak self] model in
+                self?.paymentModel = PaymentDomainModel(balance: model.balance, inProcessBalance: model.inProcessBalance)
+            }).disposed(by: disposeBag)
+    }
+    
+    private func loadCTABanners() {
+        //for testing multiple banners
+        MockAPIService.getBanners().asObservable()
+            .subscribe(onNext: { [weak self] model in
+                self?.bannerModel = CTADomainModel(banners: model.banners)
+            }).disposed(by: disposeBag)
+        
+        //for testing single banners
+//        MockAPIService.getSingleBanners().asObservable()
+//            .subscribe(onNext: { [weak self] model in
+//                self?.bannerModel = CTADomainModel(banners: model.banners)
+//            }).disposed(by: disposeBag)
     }
     
     func getProfileViewParam() -> UserInfoCellViewParam {
-        return UserInfoCellViewParam(name: "Irsyad Ashari", image: UIImage(named: "icon-profile-default"), isVerified: true)
+        if let profileModel {
+            return UserInfoCellViewParam(name: profileModel.name, image: UIImage(named: "icon-profile-default"), isVerified: profileModel.isVerified)
+        }
+        return UserInfoCellViewParam(name: "No User Found", image: UIImage(named: "icon-profile-default"), isVerified: false)
+    }
+    
+    func getPaymentViewParam() -> PaymentCellViewParam {
+        let balanceText = StringFormatter.getCurrencyDisplayedText(number: self.paymentModel?.balance ?? 0)
+        let inProcessBalanceText = StringFormatter.getCurrencyDisplayedText(number: self.paymentModel?.inProcessBalance ?? 0)
+        return PaymentCellViewParam(
+            titleBalance: "Saldo",
+            valueBalance: balanceText,
+            titleInProcessBalance: "Saldo di Proses",
+            valueInProcessBalance: inProcessBalanceText
+        )
+    }
+    
+    func getCarouselPresenter() -> CarouselViewPresenter? {
+        guard let bannerModel else { return nil }
+        return CarouselViewPresenter(colors: bannerModel.banners)
     }
     
     func generatePromotionCellParam() -> [OptionCellViewParam] {

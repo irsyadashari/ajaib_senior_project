@@ -18,6 +18,7 @@ final class ProfilePageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        presenter.viewDidLoad()
     }
     
     private func setupView() {
@@ -82,7 +83,6 @@ final class ProfilePageViewController: UIViewController {
         alertController.addAction(actionLogout)
         alertController.addAction(actionCancel)
         
-        
         // Present the alert controller
         present(alertController, animated: true, completion: nil)
     }
@@ -90,12 +90,11 @@ final class ProfilePageViewController: UIViewController {
 
 extension ProfilePageViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("cell at \(indexPath.row) is tapped")
         switch presenter.sections[indexPath.row] {
         case .logout:
             promptLogout()
         default:
-            print("other has been implemented")
+            print("please click on the chevron logo")
         }
     }
 }
@@ -108,11 +107,12 @@ extension ProfilePageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch presenter.sections[indexPath.row] {
         case .cta:
+            guard let carouselPresenter = presenter.getCarouselPresenter() else { return UITableViewCell()}
             let cell = tableView.dequeueReusableCell(
                 withIdentifier: CarouselTableViewCell.reuseIdentifier,
                 for: indexPath
             ) as! CarouselTableViewCell
-            cell.configure(presenter: presenter.getCarouselPresenter())
+            cell.configure(presenter: carouselPresenter)
             return cell
         case .profile:
             let cell = tableView.dequeueReusableCell(
@@ -137,7 +137,6 @@ extension ProfilePageViewController: UITableViewDataSource {
             cell.configure(viewParams: params)
             cell.rxEventChevronDidTapped.asObservable()
                 .subscribe(onNext: { [weak self] in
-                    print("chevron promotion tapped")
                     self?.goToDetailPage()
                 }).disposed(by: disposeBag)
             return cell
@@ -150,12 +149,10 @@ extension ProfilePageViewController: UITableViewDataSource {
             cell.configure(viewParams: params)
             cell.rxEventToggleDidSwitched.asObservable()
                 .subscribe(onNext: { [weak self] isOn in
-                    print("toggle is \(isOn)")
                     self?.toggleDarkMode(isOn: isOn)
                 }).disposed(by: disposeBag)
             cell.rxEventChevronDidTapped.asObservable()
                 .subscribe(onNext: { [weak self] in
-                    print("chevron setting tapped")
                     self?.goToDetailPage()
                 }).disposed(by: disposeBag)
             return cell
@@ -168,7 +165,6 @@ extension ProfilePageViewController: UITableViewDataSource {
             cell.configure(viewParams: params)
             cell.rxEventChevronDidTapped.asObservable()
                 .subscribe(onNext: { [weak self] in
-                    print("chevron system tapped")
                     self?.goToDetailPage()
                 }).disposed(by: disposeBag)
             return cell
@@ -191,7 +187,10 @@ extension ProfilePageViewController: UITableViewDataSource {
         case .payment:
             return 140
         case .cta:
-            return 100
+            if presenter.getCarouselPresenter()?.colors.count ?? 0 < 1 {
+                return 0
+            }
+        return 100
         case .promotion:
             return 135
         case .setting:
@@ -204,5 +203,4 @@ extension ProfilePageViewController: UITableViewDataSource {
             return 8
         }
     }
-        
 }

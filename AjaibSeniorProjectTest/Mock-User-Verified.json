@@ -1,6 +1,6 @@
 {
     "user": {
         "name": "Magicians",
-        "is_verified": false
+        "is_verified": true
     }
 }
