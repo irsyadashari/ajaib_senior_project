@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 
 final class DetailViewPresenter {
-    var simulationModel: SimulationDomainModel? = nil
+    private var simulationModel: SimulationDomainModel? = nil
     
     let rxEventSimulationViewParamLoaded = PublishSubject<Void>()
     

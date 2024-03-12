@@ -51,25 +51,25 @@ final class ProfilePagePresenter {
     }
     
     private func loadSections() {
-        //For testing verified users
-//        MockAPIService.getUserVerified().asObservable()
-//            .subscribe(onNext: { [weak self] model in
-//                self?.profileModel = UserDomainModel(name: model.name, isVerified: model.isVerified)
-//
-//                if model.isVerified {
-//                    self?.loadCTABanners()
-//                }
-//            }).disposed(by: disposeBag)
-        
-        //For testing Not verified users
-        MockAPIService.getUserNotVerified().asObservable()
+//        For testing verified users
+        MockAPIService.getUserVerified().asObservable()
             .subscribe(onNext: { [weak self] model in
                 self?.profileModel = UserDomainModel(name: model.name, isVerified: model.isVerified)
-                
+
                 if model.isVerified {
                     self?.loadCTABanners()
                 }
             }).disposed(by: disposeBag)
+        
+        //For testing Not verified users
+//        MockAPIService.getUserNotVerified().asObservable()
+//            .subscribe(onNext: { [weak self] model in
+//                self?.profileModel = UserDomainModel(name: model.name, isVerified: model.isVerified)
+//                
+//                if model.isVerified {
+//                    self?.loadCTABanners()
+//                }
+//            }).disposed(by: disposeBag)
         
         MockAPIService.getPayments().asObservable()
             .subscribe(onNext: { [weak self] model in
