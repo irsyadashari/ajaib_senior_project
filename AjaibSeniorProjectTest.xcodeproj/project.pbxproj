@@ -52,6 +52,7 @@
 		BF40962C2BA00FA900AD45B1 /* DetailViewPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF40962B2BA00FA900AD45B1 /* DetailViewPresenterTests.swift */; };
 		BF40962E2BA015A900AD45B1 /* NumericTextFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF40962D2BA015A900AD45B1 /* NumericTextFieldTests.swift */; };
 		BFCCB70F2BA01A5700C80666 /* DetailViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCCB70E2BA01A5700C80666 /* DetailViewControllerTests.swift */; };
+		BFF6F7CA2BA9F46B00B45467 /* OptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF6F7C92BA9F46B00B45467 /* OptionView.swift */; };
 		BFF7F1D72B91782A003C5EA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF7F1D62B91782A003C5EA2 /* AppDelegate.swift */; };
 		BFF7F1D92B91782A003C5EA2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF7F1D82B91782A003C5EA2 /* SceneDelegate.swift */; };
 		BFF7F1DB2B91782A003C5EA2 /* ProfilePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF7F1DA2B91782A003C5EA2 /* ProfilePageViewController.swift */; };
@@ -63,7 +64,6 @@
 		BFF7F2092B9188F7003C5EA2 /* ProfilePagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF7F2082B9188F7003C5EA2 /* ProfilePagePresenter.swift */; };
 		BFF7F20C2B918BD2003C5EA2 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF7F20B2B918BD2003C5EA2 /* UIView+Ext.swift */; };
 		BFF7F2102B918F12003C5EA2 /* LogoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF7F20F2B918F12003C5EA2 /* LogoutCell.swift */; };
-		BFF7F2142B91900F003C5EA2 /* OptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF7F2132B91900F003C5EA2 /* OptionView.swift */; };
 		BFF7F21B2B975885003C5EA2 /* UITableView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF7F21A2B975885003C5EA2 /* UITableView+Ext.swift */; };
 		BFF7F21E2B9805AB003C5EA2 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = BFF7F21D2B9805AB003C5EA2 /* RxBlocking */; };
 		BFF7F2202B9805AB003C5EA2 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = BFF7F21F2B9805AB003C5EA2 /* RxCocoa */; };
@@ -133,6 +133,7 @@
 		BF40962B2BA00FA900AD45B1 /* DetailViewPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewPresenterTests.swift; sourceTree = "<group>"; };
 		BF40962D2BA015A900AD45B1 /* NumericTextFieldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericTextFieldTests.swift; sourceTree = "<group>"; };
 		BFCCB70E2BA01A5700C80666 /* DetailViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewControllerTests.swift; sourceTree = "<group>"; };
+		BFF6F7C92BA9F46B00B45467 /* OptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionView.swift; sourceTree = "<group>"; };
 		BFF7F1D32B91782A003C5EA2 /* AjaibSeniorProjectTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AjaibSeniorProjectTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFF7F1D62B91782A003C5EA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFF7F1D82B91782A003C5EA2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -148,7 +149,6 @@
 		BFF7F2082B9188F7003C5EA2 /* ProfilePagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePagePresenter.swift; sourceTree = "<group>"; };
 		BFF7F20B2B918BD2003C5EA2 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		BFF7F20F2B918F12003C5EA2 /* LogoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutCell.swift; sourceTree = "<group>"; };
-		BFF7F2132B91900F003C5EA2 /* OptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OptionView.swift; path = ../../../../../Documents/OptionView.swift; sourceTree = "<group>"; };
 		BFF7F21A2B975885003C5EA2 /* UITableView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Ext.swift"; sourceTree = "<group>"; };
 		BFF7F2252B980C10003C5EA2 /* SystemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemCell.swift; sourceTree = "<group>"; };
 		BFF7F2272B980C85003C5EA2 /* OptionCellViewParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCellViewParam.swift; sourceTree = "<group>"; };
@@ -415,7 +415,7 @@
 		BFF7F20E2B918EC0003C5EA2 /* Reusable */ = {
 			isa = PBXGroup;
 			children = (
-				BFF7F2132B91900F003C5EA2 /* OptionView.swift */,
+				BFF6F7C92BA9F46B00B45467 /* OptionView.swift */,
 				BF4095C32B9AB79800AD45B1 /* NumericTextField.swift */,
 			);
 			path = Reusable;
@@ -579,7 +579,6 @@
 				BF4095952B984CA100AD45B1 /* UserInfoView.swift in Sources */,
 				BF4095BE2B99B4D200AD45B1 /* DetailViewController.swift in Sources */,
 				BF4095C62B9AC8EB00AD45B1 /* UITextField+Ext.swift in Sources */,
-				BFF7F2142B91900F003C5EA2 /* OptionView.swift in Sources */,
 				BF4095D22B9C0AB400AD45B1 /* SimulationDomainModel.swift in Sources */,
 				BF4095DE2B9EC33800AD45B1 /* UserDomainModel.swift in Sources */,
 				BF4095E42B9EC58C00AD45B1 /* CTAResponse.swift in Sources */,
@@ -593,6 +592,7 @@
 				BF4095E02B9EC47000AD45B1 /* PaymentResponse.swift in Sources */,
 				BF4095C42B9AB79800AD45B1 /* NumericTextField.swift in Sources */,
 				BFF7F1DB2B91782A003C5EA2 /* ProfilePageViewController.swift in Sources */,
+				BFF6F7CA2BA9F46B00B45467 /* OptionView.swift in Sources */,
 				BF4095A92B98879700AD45B1 /* CarouselViewPresenter.swift in Sources */,
 				BF40959D2B985B3D00AD45B1 /* PaymentViewCell.swift in Sources */,
 				BF4095BC2B98C10F00AD45B1 /* Theme.swift in Sources */,

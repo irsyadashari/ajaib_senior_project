@@ -27,7 +27,7 @@ class LogoutCell: UITableViewCell {
         optionView.configure(
             image: UIImage(named: "diamond-points"),
             text: "Logout",
-            isUsingBorder: true
+            isUsingBorder: true, type: .text(text: "")
         )
     }
 
